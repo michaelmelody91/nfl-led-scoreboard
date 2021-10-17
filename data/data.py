@@ -43,7 +43,9 @@ class Data:
             try:
                 all_games = nflparser.get_all_games()
                 if self.config.rotation_only_preferred:
-                    self.games = self.__filter_list_of_games(all_games, self.config.preferred_teams)
+                    self.games = self.__filter_list_of_games(all_games, self.config.preferred_teams)                
+                if self.config.live_only:
+                    self.games = self.__filter_live_games(self.games)
                 # if rotation is disabled, only look at the first team in the list of preferred teams
                 elif not self.config.rotation_enabled:
                     self.games = self.__filter_list_of_games(all_games, [self.config.preferred_teams[0]])
@@ -125,6 +127,9 @@ class Data:
 
     def __filter_list_of_games(self, games, teams):
         return list(game for game in games if set([game['awayteam'], game['hometeam']]).intersection(set(teams)))
+
+    def __filter_live_games(self, games):
+        return list(game for game in games if games[game]['state'] == 'in')
 
     # def __game_index_for(self, team_name):
     #     team_index = 0

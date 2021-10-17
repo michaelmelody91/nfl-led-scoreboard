@@ -22,6 +22,7 @@ class ScoreboardConfig:
         self.rotation_preferred_team_live_enabled = json["rotation"]["while_preferred_team_live"]["enabled"]
         self.rotation_preferred_team_live_halftime = json["rotation"]["while_preferred_team_live"]["during_halftime"]
         self.scrolling_speed = json["scrolling_speed"]
+        self.live_only = json["live_only"]
 
         # use helmet logos or regular team logos
         self.helmet_logos = json["use_helmet_logos"]
