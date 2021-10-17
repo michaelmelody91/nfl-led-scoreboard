@@ -129,7 +129,7 @@ class Data:
         return list(game for game in games if set([game['awayteam'], game['hometeam']]).intersection(set(teams)))
 
     def __filter_live_games(self, games):
-        return list(game for game in games if games[game]['state'] == 'in')
+        return list(game for game in games if game['state'] == 'in')
 
     # def __game_index_for(self, team_name):
     #     team_index = 0
